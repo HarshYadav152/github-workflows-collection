@@ -1,0 +1,10 @@
+name: Dependency Check
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dependency Check running
+        run: echo "✅ This workflow is active: dependency-check"

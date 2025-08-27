@@ -1,0 +1,10 @@
+name: Update Dependencies
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Update Dependencies running
+        run: echo "✅ This workflow is active: update-dependencies"

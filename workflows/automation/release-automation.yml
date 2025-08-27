@@ -1,0 +1,10 @@
+name: Release Automation
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Release Automation running
+        run: echo "✅ This workflow is active: release-automation"

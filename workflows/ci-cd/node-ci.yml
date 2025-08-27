@@ -1,0 +1,10 @@
+name: Node CI
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Node CI workflow running
+        run: echo "✅ This workflow is active: node-ci"

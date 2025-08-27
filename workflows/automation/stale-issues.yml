@@ -1,0 +1,10 @@
+name: Stale Issues Handler
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Stale Issues workflow running
+        run: echo "✅ This workflow is active: stale-issues"

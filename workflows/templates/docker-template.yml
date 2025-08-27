@@ -1,0 +1,11 @@
+name: Docker Template
+
+on:
+  workflow_call:
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Called from docker-template
+        run: echo "✅ This reusable workflow is active: docker-template"

@@ -1,0 +1,10 @@
+name: Python CI
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Python CI workflow running
+        run: echo "✅ This workflow is active: python-ci"

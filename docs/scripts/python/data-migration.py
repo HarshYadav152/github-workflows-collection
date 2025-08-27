@@ -1,0 +1,1 @@
+print("✅ Python script: running data migration...")

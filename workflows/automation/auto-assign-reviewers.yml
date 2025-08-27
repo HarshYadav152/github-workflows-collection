@@ -1,0 +1,10 @@
+name: Auto Assign Reviewers
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Auto Assign Reviewers running
+        run: echo "✅ This workflow is active: auto-assign-reviewers"

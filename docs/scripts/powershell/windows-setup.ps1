@@ -1,0 +1,1 @@
+Write-Host "✅ PowerShell script: Windows setup started..."

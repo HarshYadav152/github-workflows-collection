@@ -1,0 +1,10 @@
+name: Cleanup Artifacts
+
+on: workflow_dispatch
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cleanup Artifacts running
+        run: echo "✅ This workflow is active: cleanup-artifacts"
