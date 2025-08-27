@@ -1,0 +1,10 @@
+name: Examples Validation
+
+on: [push, pull_request]
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Say hello from examples-validation
+        run: echo "✅ This workflow is active: examples-validation"
