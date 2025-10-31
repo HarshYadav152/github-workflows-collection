@@ -1,10 +1,53 @@
 name: Examples Validation
 
-on: [push, pull_request]
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
 
 jobs:
-  echo:
+  validate-workflows:
     runs-on: ubuntu-latest
+    
     steps:
-      - name: Say hello from examples-validation
-        run: echo "✅ This workflow is active: examples-validation"
+    - name: Checkout repository
+      uses: actions/checkout@v3
+    
+    - name: Validate workflow structure
+      run: |
+        echo "📋 Validating workflow collection structure..."
+        
+        # Check if all required directories exist
+        directories=("workflows/automation" "workflows/ci-cd" "workflows/code-quality" "workflows/maintenance" "workflows/templates")
+        
+        for dir in "${directories[@]}"; do
+          if [ -d "$dir" ]; then
+            echo "✅ Found: $dir"
+          else
+            echo "❌ Missing: $dir"
+            exit 1
+          fi
+        done
+    
+    - name: Count workflows
+      run: |
+        echo "📊 Workflow Statistics:"
+        echo "Automation workflows: $(ls -1 workflows/automation/*.yml 2>/dev/null | wc -l)"
+        echo "CI/CD workflows: $(ls -1 workflows/ci-cd/*.yml 2>/dev/null | wc -l)"
+        echo "Code Quality workflows: $(ls -1 workflows/code-quality/*.yml 2>/dev/null | wc -l)"
+        echo "Maintenance workflows: $(ls -1 workflows/maintenance/*.yml 2>/dev/null | wc -l)"
+        echo "Template workflows: $(ls -1 workflows/templates/*.yml 2>/dev/null | wc -l)"
+    
+    - name: Validate README
+      run: |
+        echo "📖 Validating README..."
+        if [ -f "README.md" ]; then
+          echo "✅ README.md exists"
+        else
+          echo "❌ README.md not found"
+          exit 1
+        fi
+    
+    - name: Examples Validation Success
+      run: echo "✅ Repository structure validation completed successfully!"

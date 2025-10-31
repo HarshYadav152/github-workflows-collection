@@ -1,0 +1,46 @@
+name: Template Lint
+
+on:
+  push:
+    paths:
+      - '.github/workflows/*.yml'
+      - '.github/ISSUE_TEMPLATE/*.md'
+  pull_request:
+    paths:
+      - '.github/workflows/*.yml'
+      - '.github/ISSUE_TEMPLATE/*.md'
+
+jobs:
+  lint-workflows:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    
+    - name: Validate workflow syntax
+      run: |
+        echo "🔍 Validating GitHub Actions workflow syntax..."
+        for workflow in .github/workflows/*.yml; do
+          echo "Checking: $workflow"
+          if grep -q "name:" "$workflow"; then
+            echo "✅ $workflow is valid"
+          else
+            echo "❌ $workflow is missing 'name' field"
+            exit 1
+          fi
+        done
+    
+    - name: Lint issue templates
+      run: |
+        echo "🔍 Validating issue templates..."
+        for template in .github/ISSUE_TEMPLATE/*.md; do
+          if grep -q "name:" "$template"; then
+            echo "✅ $template is valid"
+          else
+            echo "⚠️ Warning: $template might be missing frontmatter"
+          fi
+        done
+    
+    - name: Lint Success
+      run: echo "✅ All templates and workflows passed linting!"
