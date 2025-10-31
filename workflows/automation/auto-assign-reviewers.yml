@@ -1,10 +1,26 @@
 name: Auto Assign Reviewers
 
-on: workflow_dispatch
+on:
+  pull_request:
+    types: [opened, reopened]
 
 jobs:
-  demo:
+  assign-reviewers:
     runs-on: ubuntu-latest
+    
+    permissions:
+      pull-requests: write
+    
     steps:
-      - name: Auto Assign Reviewers running
-        run: echo "✅ This workflow is active: auto-assign-reviewers"
+    - name: Checkout CODEOWNERS
+      uses: actions/checkout@v3
+    
+    - name: Assign reviewers
+      uses: kentaro-m/auto-assign@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        configuration-path: .github/auto-assign.yml
+      continue-on-error: true
+    
+    - name: Assignment Success
+      run: echo "✅ Reviewers assigned to pull request!"
