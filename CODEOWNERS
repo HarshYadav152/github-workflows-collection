@@ -1,0 +1,11 @@
+## Assign ownership of all workflows to yourself
+/workflows/*    @HarshYadav152
+
+## Own all scripts
+/scripts/*      @HarshYadav152
+
+## Own the .github workflows
+.github/workflows/*   @HarshYadav152
+
+## Own all docs
+/docs/*         @HarshYadav152
